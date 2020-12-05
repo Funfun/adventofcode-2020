@@ -6,7 +6,6 @@ import (
 	"log"
 	"math"
 	"os"
-	"regexp"
 	"sort"
 )
 
@@ -15,15 +14,6 @@ type Field struct {
 	Required bool
 	Key      string
 	Value    string
-}
-
-var elcValues = []string{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}
-var color *regexp.Regexp
-var pidre *regexp.Regexp
-
-func init() {
-	color = regexp.MustCompile(`^#[0-9a-f]{6}$`)
-	pidre = regexp.MustCompile(`^\d{9}$`)
 }
 
 const maxRows = 127 // total

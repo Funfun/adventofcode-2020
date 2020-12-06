@@ -41,13 +41,16 @@ func main() {
 
 			for k := 0; k < len(answers); k++ {
 				if c, ok := cross[answers[k]]; ok {
-					cross[answers[k]] = c + 1
+					cross[answers[k]] = c + 1 // counter number of same answers to 'yes'
 				} else {
 					cross[answers[k]] = 1
 				}
 			}
 		}
 
+		// a = 5 people
+		// b = 4
+		// group size: 5
 		groupTotal := 0
 		for _, v := range cross {
 			if v == len(group) {

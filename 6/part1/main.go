@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"sort"
 )
 
 func main() {
@@ -31,9 +30,6 @@ func main() {
 				}
 			}
 			// [a, b, c]
-			sort.Slice(dic, func(i, j int) bool {
-				return dic[i] < dic[j]
-			})
 			group = append(group, dic)
 
 			continue

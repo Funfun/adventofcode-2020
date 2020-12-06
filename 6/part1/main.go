@@ -15,8 +15,8 @@ func main() {
 
 	scanner := bufio.NewScanner(input)
 
-	allGroups := [][][]string{}
 	group := [][]string{}
+	total := 0
 
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -35,21 +35,9 @@ func main() {
 			continue
 		}
 
-		allGroups = append(allGroups, group)
-		group = [][]string{}
-	}
-	if err := scanner.Err(); err != nil {
-		fmt.Fprintln(os.Stderr, "reading standard input:", err)
-		os.Exit(1)
-	}
-
-	total := 0
-	// allGroups.all?{|group| group.each_person_answers_are_equal }
-	for i := 0; i < len(allGroups); i++ {
-		thegroup := allGroups[i]
 		cross := map[string]int{}
-		for j := 0; j < len(thegroup); j++ {
-			answers := thegroup[j]
+		for j := 0; j < len(group); j++ {
+			answers := group[j]
 
 			for k := 0; k < len(answers); k++ {
 				if c, ok := cross[answers[k]]; ok {
@@ -61,14 +49,17 @@ func main() {
 		}
 
 		groupTotal := 0
-
 		for _, v := range cross {
-			if v == len(thegroup) {
+			if v == len(group) {
 				groupTotal++
 				total++
 			}
 		}
-		fmt.Println(groupTotal, "----------")
+		group = [][]string{}
+	}
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "reading standard input:", err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("total: %v\n", total)
